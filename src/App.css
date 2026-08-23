@@ -57,14 +57,14 @@ body {
 }
 
 /* ============================================================
-   1. HEADER WITH LARGE, PERFECTLY ALIGNED LOGOS & TABS
+   1. HEADER WITH 82PX LOGOS & PERFECT VERTICAL ALIGNMENT
 ============================================================ */
 .header-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 10px 0;
+  padding: 8px 0;
   background: rgba(250, 246, 242, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -89,11 +89,11 @@ body {
   justify-content: center;
   gap: 16px;
   flex-shrink: 0;
-  height: 68px;
+  height: 88px;
 }
 
 .brand-logo-unit {
-  height: 62px !important;
+  height: 82px !important;
   width: auto !important;
   max-width: none !important;
   object-fit: contain;
@@ -108,7 +108,7 @@ body {
 
 .brand-separator-bar {
   width: 2px;
-  height: 44px;
+  height: 56px;
   background-color: var(--terracotta-vibrant);
   opacity: 0.35;
   align-self: center;
@@ -172,7 +172,7 @@ body {
   display: flex;
   align-items: center;
   position: relative;
-  padding-top: 115px;
+  padding-top: 135px;
   overflow: hidden;
 }
 
@@ -523,14 +523,14 @@ body {
     display: none;
   }
   .brand-combo {
-    height: 50px;
+    height: 56px;
     gap: 10px;
   }
   .brand-logo-unit {
-    height: 44px !important;
+    height: 48px !important;
   }
   .brand-separator-bar {
-    height: 30px;
+    height: 32px;
   }
   .footer-logo-row {
     height: 60px;
