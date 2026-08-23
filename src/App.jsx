@@ -54,7 +54,7 @@ export default function App() {
 
   return (
     <div className="master-ambient-container">
-      {/* 1. Header with Clean Tabs & Crystal Clear Logos */}
+      {/* 1. Header with Clean Tabs & Large Centered Logos */}
       <header className="header-bar">
         <div className="header-flex">
           <div className="brand-combo">
@@ -75,7 +75,7 @@ export default function App() {
             />
           </div>
 
-          {/* Clean Navigation: No Numbers */}
+          {/* Clean Navigation */}
           <nav className="nav-links-wrap">
             <a href="#home" className={`nav-anchor ${activeNav === 'home' ? 'active' : ''}`}>Home</a>
             <a href="#vision" className={`nav-anchor ${activeNav === 'vision' ? 'active' : ''}`}>Vision</a>
@@ -94,7 +94,6 @@ export default function App() {
           <div className="hero-overlay-fade" aria-hidden="true" />
 
           <div className="hero-content-wrapper">
-            {/* Saturangle Presents */}
             <div className="idea-bulb-glow-container">
               <span className="bulb-emoji">💡</span>
               <span className="bulb-tagline-text">SATURANGLE PRESENTS</span>
