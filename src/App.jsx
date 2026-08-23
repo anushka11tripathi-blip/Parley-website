@@ -33,7 +33,7 @@ export default function App() {
     {
       num: '01',
       title: 'CONSTRUCTIVE DIALOGUE',
-      desc: 'Moving past polarizing arguments toward constructive, nuanced conversations that discover shared ground.'
+      desc: 'Moving past polarized arguments toward constructive, nuanced conversations that discover shared ground.'
     },
     {
       num: '02',
@@ -53,145 +53,161 @@ export default function App() {
   ];
 
   return (
-    <div className="master-canvas">
-      {/* 1. Top Header with Large Distinct Logos */}
+    <div className="master-ambient-container">
+      {/* 1. Clear High-Visibility Header */}
       <header className="header-bar">
-        <div className="header-inner">
-          <div className="brand-duo-lockup">
+        <div className="header-flex">
+          <div className="brand-combo">
             <img 
               src={glaLogo} 
               alt="GLA University Official Logo" 
-              className="brand-logo-img"
+              className="brand-logo-unit"
             />
-            <div className="brand-divider" />
+            <div className="brand-separator-bar" />
             <img 
               src={saturangleLogo} 
               alt="Saturangle Official Logo" 
-              className="brand-logo-img"
+              className="brand-logo-unit"
             />
           </div>
 
-          <nav className="nav-cluster">
-            <a href="#about" className={`nav-link-btn ${activeNav === 'about' ? 'active' : ''}`}>01 About</a>
-            <a href="#vision" className={`nav-link-btn ${activeNav === 'vision' ? 'active' : ''}`}>02 Vision</a>
-            <a href="#experience" className={`nav-link-btn ${activeNav === 'experience' ? 'active' : ''}`}>03 Experience</a>
-            <a href="#saturangle" className={`nav-link-btn ${activeNav === 'saturangle' ? 'active' : ''}`}>04 Saturangle</a>
+          <nav className="nav-links-wrap">
+            <a href="#about" className={`nav-anchor ${activeNav === 'about' ? 'active' : ''}`}>01 About</a>
+            <a href="#vision" className={`nav-anchor ${activeNav === 'vision' ? 'active' : ''}`}>02 Vision</a>
+            <a href="#experience" className={`nav-anchor ${activeNav === 'experience' ? 'active' : ''}`}>03 Experience</a>
+            <a href="#saturangle" className={`nav-anchor ${activeNav === 'saturangle' ? 'active' : ''}`}>04 Saturangle</a>
           </nav>
 
-          <div className="nav-identity-pill">PARLEY</div>
+          <div className="nav-pill-badge">PARLEY</div>
         </div>
       </header>
 
       {/* 2. Hero Section */}
       <main>
-        <section className="hero-stage-container section-wrap">
-          <div className="hero-backdrop-silhouette" aria-hidden="true" />
-          <div className="hero-veil" aria-hidden="true" />
+        <section className="hero-stage section-container">
+          <div className="hero-full-bg-layer" aria-hidden="true" />
+          <div className="hero-overlay-fade" aria-hidden="true" />
 
-          <div className="hero-editorial-wrap">
-            {/* Elegant Collaboration Badge */}
-            <div className="collab-pill">
-              <span className="collab-dot" />
-              <span className="collab-text">GLA University × Saturangle Collaboration</span>
+          <div className="hero-content-wrapper">
+            <div className="idea-bulb-glow-container" aria-hidden="true">
+              <span className="bulb-emoji">💡</span>
+              <span className="bulb-tagline-text">GLA University × Saturangle Collaboration</span>
             </div>
 
-            <h1 className="hero-main-title">
-              <span className="gradient-text">PARLEY</span>
+            <h1 className="hero-headline">
+              PARLEY
             </h1>
-
-            <p className="hero-sub-statement">
-              The flagship intellectual round-table discourse where perspectives meet, ideas are refined, and meaningful dialogues shape the future.
+            <p className="hero-description">
+              The flagship intellectual round-table discourse where perspectives converge, ideas are refined, and meaningful dialogues shape the future.
             </p>
-
-            <div className="hero-tag-container">
-              <span className="tag-label">Flagship Intellectual Roundtable Dialogue</span>
+            <div className="hero-badge-tag">
+              <div className="badge-pulse" />
+              <span className="badge-text">Flagship Intellectual Roundtable Dialogue</span>
             </div>
           </div>
         </section>
 
-        {/* 3. Structured About Section */}
-        <section id="about" className="section-wrap">
+        {/* 3. About Section */}
+        <section id="about" className="section-container">
           <span className="section-tagline">01 / The Identity</span>
-          <h2 className="section-headline">What is Parley?</h2>
-
-          <div className="about-grid-layout">
-            <div className="about-main-narrative">
-              <p className="lead-paragraph">
-                Parley is an intellectual round-table designed to transcend polarized debates—transforming open conversation into shared clarity and actionable perspectives.
-              </p>
-              <p className="body-paragraph">
-                Derived from the historical tradition of gathering to hold deliberate dialogue, Parley provides an open floor at GLA University for students and multidisciplinary thinkers to dissect contemporary challenges.
-              </p>
-              <p className="body-paragraph">
-                Unlike competitive podium debates, Parley balances rigor with synthesis. We build a circular environment where perspectives meet equally to explore ideas that move forward.
-              </p>
-            </div>
-
-            <div className="about-side-card">
-              <h4>The Round-Table Philosophy</h4>
-              <p>
-                Every voice holds equal weight. Parley abandons rigid podiums in favor of open circular discourse—fostering analytical nuance, cross-domain debate, and actionable clarity.
-              </p>
-            </div>
+          <h2 className="section-title">What is Parley?</h2>
+          <p className="editorial-lead">
+            Parley is an intellectual round-table designed to transcend polarized debates—transforming open conversation into shared clarity and actionable perspectives.
+          </p>
+          <div className="editorial-columns">
+            <p>
+              Derived from the historical tradition of gathering to hold deliberate dialogue, Parley provides an open floor at GLA University for students and multidisciplinary thinkers to dissect contemporary challenges.
+            </p>
+            <p>
+              Unlike competitive podium debates, Parley balances rigor with synthesis. We build a circular environment where perspectives meet equally to explore ideas that move forward.
+            </p>
           </div>
         </section>
 
         {/* 4. Vision Section */}
-        <section id="vision" className="section-wrap">
+        <section id="vision" className="section-container">
           <span className="section-tagline">02 / The Purpose</span>
-          <h2 className="section-headline">Why Parley Exists</h2>
-          
+          <h2 className="section-title">Why Parley Exists</h2>
           <div className="vision-deck-grid">
             {visionPillars.map((item) => (
-              <div key={item.num} className="vision-card">
-                <span className="card-num-badge">{item.num}</span>
-                <h3 className="card-title">{item.title}</h3>
-                <p className="card-desc">{item.desc}</p>
+              <div key={item.num} className="vision-card-frosted">
+                <span className="vision-num">{item.num}</span>
+                <h3 className="vision-card-title">{item.title}</h3>
+                <p className="vision-card-desc">{item.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* 5. Experience Section */}
-        <section id="experience" className="section-wrap">
+        <section id="experience" className="section-container">
           <span className="section-tagline">03 / The Format</span>
-          <h2 className="section-headline">The Parley Experience</h2>
-          
-          <div className="exp-flow-grid">
-            <div className="exp-tile">
+          <h2 className="section-title">The Parley Experience</h2>
+          <div className="exp-grid">
+            <div className="exp-block">
               <h4>Moderated Circles</h4>
               <p>Structured round-table moderation designed to give equal weight to every voice while preserving conversational flow.</p>
             </div>
-            <div className="exp-tile">
+            <div className="exp-block">
               <h4>Cross-Domain Inquiry</h4>
               <p>Curated discussion prompts targeting key technological, social, and economic paradigms.</p>
             </div>
-            <div className="exp-tile">
+            <div className="exp-block">
               <h4>Synthesis & Output</h4>
               <p>Transforming conversational insights into concrete takeaways and lasting intellectual community.</p>
             </div>
           </div>
         </section>
 
-        {/* 6. Closing Section with Giant Saturangle Logo */}
-        <footer id="saturangle" className="closing-footer-stage">
-          <div className="section-wrap" style={{ padding: '0 0 30px 0' }}>
-            <blockquote className="footer-quote">
+        {/* 6. Closing Section with Parley Event Highlights */}
+        <footer id="saturangle" className="closing-wrap">
+          <div className="section-container" style={{ padding: '0 0 40px 0' }}>
+            <blockquote className="closing-quote-text">
               “Where perspectives meet, conversations begin, and ideas move forward.”
             </blockquote>
 
-            <div className="host-showcase-box">
-              <span className="section-tagline" style={{ marginBottom: '1.8rem' }}>Organised By</span>
+            {/* Structured Parley Format Matrix */}
+            <div className="reference-meta-section-card">
+              <div className="meta-header-row">
+                <div className="meta-header-line" />
+                <span className="meta-header-title">Event Architecture</span>
+                <div className="meta-header-line" />
+              </div>
+
+              <div className="meta-grid">
+                <div className="meta-block primary">
+                  <span className="meta-block-label accent">Discussion Format</span>
+                  <div className="meta-block-data">ROUND TABLE</div>
+                  <div className="meta-block-subtitle">Circular & Moderated Floor</div>
+                </div>
+
+                <div className="meta-block terracotta">
+                  <span className="meta-block-label">Session Flow</span>
+                  <div className="meta-block-data">3 PHASES</div>
+                  <div className="meta-block-subtitle">Thesis • Synthesis • Action</div>
+                </div>
+
+                <div className="meta-block terracotta">
+                  <span className="meta-block-label">Venue Platform</span>
+                  <div className="meta-block-data">GLA CAMPUS</div>
+                  <div className="meta-block-subtitle">Mathura, Uttar Pradesh</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Host Section */}
+            <div className="host-section-card">
+              <span className="section-tagline" style={{ marginBottom: '1.6rem' }}>Organised By</span>
               <br />
               <img 
                 src={saturangleLogo} 
                 alt="Saturangle Official Logo" 
-                className="saturangle-mega-logo"
+                className="saturangle-footer-logo"
               />
-              <p className="host-description-text">
+              <p className="host-body-text">
                 Saturangle is the flagship student-driven club fostering thought leadership, dialogue, and creative community at GLA University.
               </p>
-              <p className="official-footer-stamp">
+              <p className="footer-stamp-meta">
                 GLA UNIVERSITY • SATURANGLE
               </p>
             </div>
