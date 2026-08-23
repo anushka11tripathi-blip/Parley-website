@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+// 1. Vite Production Imports for Images
+import glaLogo from './assets/gla-logo.png';
+import saturangleLogo from './assets/saturangle-logo.png';
+
 export default function App() {
   const [activeNav, setActiveNav] = useState('about');
 
@@ -51,26 +55,20 @@ export default function App() {
 
   return (
     <div className="master-ambient-container">
-      {/* 1. Header with Giant Logos */}
+      {/* 1. Header with Production-Ready Large Logos */}
       <header className="header-bar">
         <div className="header-flex">
           <div className="brand-combo">
             <img 
-              src="/src/assets/gla-logo.png" 
+              src={glaLogo} 
               alt="GLA University Official Logo" 
               className="brand-logo-unit"
-              onError={(e) => {
-                e.currentTarget.outerHTML = '<span style="font-weight:800;letter-spacing:0.1em;font-size:1.3rem;color:#BA3D0F;">GLA UNIVERSITY</span>';
-              }}
             />
             <div className="brand-separator-bar" />
             <img 
-              src="/src/assets/saturangle-logo.png" 
+              src={saturangleLogo} 
               alt="Saturangle Official Logo" 
               className="brand-logo-unit"
-              onError={(e) => {
-                e.currentTarget.outerHTML = '<span style="font-weight:800;letter-spacing:0.1em;font-size:1.3rem;color:#D45424;">SATURANGLE</span>';
-              }}
             />
           </div>
 
@@ -92,7 +90,6 @@ export default function App() {
           <div className="hero-overlay-fade" aria-hidden="true" />
 
           <div className="hero-content-wrapper">
-            {/* Crazy Tagline Badge */}
             <div className="crazy-badge-wrapper" aria-hidden="true">
               <span className="badge-icon-lightning">⚡</span>
               <span className="badge-headline-label">Clash of Young Minds • Unleash the Dialogue</span>
@@ -174,12 +171,9 @@ export default function App() {
               <span className="section-tag" style={{ marginBottom: '1.6rem' }}>Organised By</span>
               <br />
               <img 
-                src="/src/assets/saturangle-logo.png" 
+                src={saturangleLogo} 
                 alt="Saturangle Official Logo" 
                 className="saturangle-footer-logo"
-                onError={(e) => {
-                  e.currentTarget.outerHTML = '<h3 style="font-size:2.8rem;color:#BA3D0F;margin-bottom:1.5rem;font-weight:900;">SATURANGLE</h3>';
-                }}
               />
               <p className="host-body-text">
                 Saturangle is the flagship student-driven club fostering thought leadership, dialogue, and creative community at GLA University.
