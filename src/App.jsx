@@ -1,34 +1,98 @@
+// App.jsx
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import glaLogo from './assets/gla-logo.png';
 import saturangleLogo from './assets/saturangle-logo.png';
 
-export default function App() {
-  const [activeNav, setActiveNav] = useState('home');
+const ROUTES = {
+  '/': 'home',
+  '/vision': 'vision',
+  '/experience': 'experience',
+};
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'vision', 'experience', 'contact'];
-      const scrollY = window.scrollY + 200;
+function resolvePage(pathname) {
+  return ROUTES[pathname] || 'home';
+}
 
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollY >= top && scrollY < top + height) {
-            setActiveNav(id);
-            break;
-          }
-        }
-      }
-    };
+function Header({ page, navigate }) {
+  return (
+    <header className="header-bar">
+      <div className="header-flex">
+        <div className="brand-combo" onClick={navigate('/')} role="button" tabIndex={0}>
+          <div className="brand-logo-frame">
+            <img src={glaLogo} alt="GLA University" className="brand-logo-unit" />
+          </div>
+          <div className="brand-separator-bar" />
+          <div className="brand-logo-frame">
+            <img
+              src={saturangleLogo}
+              alt="Saturangle"
+              className="brand-logo-unit"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/saturangle-logo.png';
+              }}
+            />
+          </div>
+        </div>
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+        <nav className="nav-links-wrap">
+          <a
+            href="/"
+            className={`nav-anchor ${page === 'home' ? 'active' : ''}`}
+            onClick={navigate('/')}
+          >
+            Home
+          </a>
+          <a
+            href="/vision"
+            className={`nav-anchor ${page === 'vision' ? 'active' : ''}`}
+            onClick={navigate('/vision')}
+          >
+            Vision
+          </a>
+          <a
+            href="/experience"
+            className={`nav-anchor ${page === 'experience' ? 'active' : ''}`}
+            onClick={navigate('/experience')}
+          >
+            Experience
+          </a>
+        </nav>
 
+        <div className="nav-pill-badge">PARLEY</div>
+      </div>
+    </header>
+  );
+}
+
+function HomePage() {
+  return (
+    <section className="hero-stage section-container">
+      <div className="hero-full-bg-layer" aria-hidden="true" />
+      <div className="hero-overlay-fade" aria-hidden="true" />
+
+      <div className="hero-content-wrapper">
+        <div className="idea-bulb-glow-container">
+          <span className="bulb-emoji">💡</span>
+          <span className="bulb-tagline-text">SATURANGLE PRESENTS</span>
+        </div>
+
+        <h1 className="hero-headline">PARLEY</h1>
+        <p className="hero-description">
+          The flagship intellectual round-table discourse where perspectives converge, ideas are refined, and meaningful dialogues shape the future.
+        </p>
+        <div className="hero-badge-tag">
+          <div className="badge-pulse" />
+          <span className="badge-text">Flagship Intellectual Roundtable Dialogue</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function VisionPage() {
   const visionPillars = [
     {
       num: '01',
@@ -53,190 +117,163 @@ export default function App() {
   ];
 
   return (
-    <div className="master-ambient-container">
-      {/* 1. Header with Clean Tabs & Large Centered Logos */}
-      <header className="header-bar">
-        <div className="header-flex">
-          <div className="brand-combo">
-            <img 
-              src={glaLogo} 
-              alt="GLA University" 
-              className="brand-logo-unit"
-            />
-            <div className="brand-separator-bar" />
-            <img 
-              src={saturangleLogo} 
-              alt="Saturangle" 
-              className="brand-logo-unit"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/saturangle-logo.png';
-              }}
-            />
+    <section className="section-container page-min-height">
+      <span className="section-tagline">The Purpose</span>
+      <h2 className="section-title">Why Parley Exists</h2>
+      <div className="vision-deck-grid">
+        {visionPillars.map((item) => (
+          <div key={item.num} className="vision-card-frosted">
+            <span className="vision-num">{item.num}</span>
+            <h3 className="vision-card-title">{item.title}</h3>
+            <p className="vision-card-desc">{item.desc}</p>
           </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-          {/* Clean Navigation */}
-          <nav className="nav-links-wrap">
-            <a href="#home" className={`nav-anchor ${activeNav === 'home' ? 'active' : ''}`}>Home</a>
-            <a href="#vision" className={`nav-anchor ${activeNav === 'vision' ? 'active' : ''}`}>Vision</a>
-            <a href="#experience" className={`nav-anchor ${activeNav === 'experience' ? 'active' : ''}`}>Experience</a>
-            <a href="#contact" className={`nav-anchor ${activeNav === 'contact' ? 'active' : ''}`}>Contact</a>
-          </nav>
-
-          <div className="nav-pill-badge">PARLEY</div>
+function ExperiencePage({ navigate }) {
+  return (
+    <>
+      <section className="section-container page-min-height">
+        <span className="section-tagline">The Format</span>
+        <h2 className="section-title">The Parley Experience</h2>
+        <div className="exp-grid">
+          <div className="exp-block">
+            <h4>Moderated Circles</h4>
+            <p>Structured round-table moderation designed to give equal weight to every voice while preserving conversational flow.</p>
+          </div>
+          <div className="exp-block">
+            <h4>Cross-Domain Inquiry</h4>
+            <p>Curated discussion prompts targeting key technological, social, and economic paradigms.</p>
+          </div>
+          <div className="exp-block">
+            <h4>Synthesis & Output</h4>
+            <p>Transforming conversational insights into concrete takeaways and lasting intellectual community.</p>
+          </div>
         </div>
-      </header>
+      </section>
 
-      <main>
-        {/* 2. Hero Section */}
-        <section id="home" className="hero-stage section-container">
-          <div className="hero-full-bg-layer" aria-hidden="true" />
-          <div className="hero-overlay-fade" aria-hidden="true" />
+      <Footer navigate={navigate} />
+    </>
+  );
+}
 
-          <div className="hero-content-wrapper">
-            <div className="idea-bulb-glow-container">
-              <span className="bulb-emoji">💡</span>
-              <span className="bulb-tagline-text">SATURANGLE PRESENTS</span>
+function Footer({ navigate }) {
+  return (
+    <footer className="site-footer">
+      <div className="footer-inner-container">
+        <div className="footer-columns-grid">
+          <div className="footer-brand-col">
+            <div className="footer-logo-row">
+              <img src={glaLogo} alt="GLA University" className="footer-logo-item" />
+              <div className="footer-logo-divider" />
+              <img
+                src={saturangleLogo}
+                alt="Saturangle"
+                className="footer-logo-item"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/saturangle-logo.png';
+                }}
+              />
             </div>
-
-            <h1 className="hero-headline">
-              PARLEY
-            </h1>
-            <p className="hero-description">
-              The flagship intellectual round-table discourse where perspectives converge, ideas are refined, and meaningful dialogues shape the future.
+            <p className="footer-brand-tagline">
+              Parley — the flagship intellectual roundtable discourse hosted by Saturangle, the official club of GLA University.
             </p>
-            <div className="hero-badge-tag">
-              <div className="badge-pulse" />
-              <span className="badge-text">Flagship Intellectual Roundtable Dialogue</span>
+          </div>
+
+          <div className="footer-nav-col">
+            <h4 className="footer-col-heading">SOCIALS</h4>
+            <ul className="footer-link-list">
+              <li>
+                <a
+                  href="https://www.instagram.com/saturangleclub.glau?igsi=N2YyZHR4a3c4c2kw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/school/gla-university/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="/vision" onClick={navigate('/vision')}>
+                  Vision
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="footer-nav-col">
+            <h4 className="footer-col-heading">CONTACT</h4>
+            <div className="footer-contact-item">
+              GLA University, Mathura
+            </div>
+            <div className="footer-contact-item">
+              <a href="mailto:saturangle@gla.ac.in">
+                saturangle@gla.ac.in
+              </a>
+            </div>
+            <div className="footer-contact-item">
+              <a href="tel:+919027068068">
+                +91 90270 68068
+              </a>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* 3. Vision Section */}
-        <section id="vision" className="section-container">
-          <span className="section-tagline">The Purpose</span>
-          <h2 className="section-title">Why Parley Exists</h2>
-          <div className="vision-deck-grid">
-            {visionPillars.map((item) => (
-              <div key={item.num} className="vision-card-frosted">
-                <span className="vision-num">{item.num}</span>
-                <h3 className="vision-card-title">{item.title}</h3>
-                <p className="vision-card-desc">{item.desc}</p>
-              </div>
-            ))}
+        <div className="footer-bottom-bar">
+          <div>
+            © {new Date().getFullYear()} Saturangle, GLA University. All rights reserved.
           </div>
-        </section>
-
-        {/* 4. Experience Section */}
-        <section id="experience" className="section-container">
-          <span className="section-tagline">The Format</span>
-          <h2 className="section-title">The Parley Experience</h2>
-          <div className="exp-grid">
-            <div className="exp-block">
-              <h4>Moderated Circles</h4>
-              <p>Structured round-table moderation designed to give equal weight to every voice while preserving conversational flow.</p>
-            </div>
-            <div className="exp-block">
-              <h4>Cross-Domain Inquiry</h4>
-              <p>Curated discussion prompts targeting key technological, social, and economic paradigms.</p>
-            </div>
-            <div className="exp-block">
-              <h4>Synthesis & Output</h4>
-              <p>Transforming conversational insights into concrete takeaways and lasting intellectual community.</p>
-            </div>
+          <div className="footer-bottom-right-tag">
+            PARLEY
           </div>
-        </section>
+        </div>
+      </div>
+    </footer>
+  );
+}
 
-        {/* 5. Final Footer with Large Prominent Logos */}
-        <footer id="contact" className="site-footer">
-          <div className="footer-inner-container">
-            <div className="footer-columns-grid">
-              
-              {/* Left Column: Big Footer Logos & Narrative */}
-              <div className="footer-brand-col">
-                <div className="footer-logo-row">
-                  <img 
-                    src={glaLogo} 
-                    alt="GLA University" 
-                    className="footer-logo-item" 
-                  />
-                  <div className="footer-logo-divider" />
-                  <img 
-                    src={saturangleLogo} 
-                    alt="Saturangle" 
-                    className="footer-logo-item" 
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/saturangle-logo.png';
-                    }}
-                  />
-                </div>
-                <p className="footer-brand-tagline">
-                  Parley — the flagship intellectual roundtable discourse hosted by Saturangle, the official club of GLA University.
-                </p>
-              </div>
+export default function App() {
+  const [pathname, setPathname] = useState(
+    typeof window !== 'undefined' ? window.location.pathname : '/'
+  );
 
-              {/* Middle Column: Socials */}
-              <div className="footer-nav-col">
-                <h4 className="footer-col-heading">SOCIALS</h4>
-                <ul className="footer-link-list">
-                  <li>
-                    <a 
-                      href="https://www.instagram.com/saturangleclub.glau?igsi=N2YyZHR4a3c4c2kw" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      Instagram
-                    </a>
-                  </li>
-                  <li>
-                    <a 
-                      href="https://www.linkedin.com/school/gla-university/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      LinkedIn
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#vision">
-                      Vision
-                    </a>
-                  </li>
-                </ul>
-              </div>
+  useEffect(() => {
+    const handlePopState = () => setPathname(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
-              {/* Right Column: Contact Information */}
-              <div className="footer-nav-col">
-                <h4 className="footer-col-heading">CONTACT</h4>
-                <div className="footer-contact-item">
-                  GLA University, Mathura
-                </div>
-                <div className="footer-contact-item">
-                  <a href="mailto:saturangle@gla.ac.in">
-                    saturangle@gla.ac.in
-                  </a>
-                </div>
-                <div className="footer-contact-item">
-                  <a href="tel:+919027068068">
-                    +91 90270 68068
-                  </a>
-                </div>
-              </div>
+  const navigate = (path) => (e) => {
+    if (e) e.preventDefault();
+    if (path !== window.location.pathname) {
+      window.history.pushState({}, '', path);
+      setPathname(path);
+      window.scrollTo(0, 0);
+    }
+  };
 
-            </div>
+  const page = resolvePage(pathname);
 
-            {/* Bottom Bar */}
-            <div className="footer-bottom-bar">
-              <div>
-                © {new Date().getFullYear()} Saturangle, GLA University. All rights reserved.
-              </div>
-              <div className="footer-bottom-right-tag">
-                PARLEY
-              </div>
-            </div>
-          </div>
-        </footer>
+  return (
+    <div className="master-ambient-container">
+      <Header page={page} navigate={navigate} />
+
+      <main className="main-content-layout">
+        {page === 'home' && <HomePage />}
+        {page === 'vision' && <VisionPage />}
+        {page === 'experience' && <ExperiencePage navigate={navigate} />}
       </main>
     </div>
   );
