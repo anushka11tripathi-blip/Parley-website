@@ -19,7 +19,14 @@ function Header({ page, navigate }) {
   return (
     <header className="header-bar">
       <div className="header-flex">
-        <div className="brand-combo" onClick={navigate('/')} role="button" tabIndex={0}>
+        <div
+          className="brand-combo"
+          onClick={navigate('/')}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && navigate('/')(e)}
+          role="button"
+          tabIndex={0}
+          aria-label="Navigate to Home"
+        >
           <div className="brand-logo-frame">
             <img src={glaLogo} alt="GLA University" className="brand-logo-unit" />
           </div>
@@ -37,7 +44,7 @@ function Header({ page, navigate }) {
           </div>
         </div>
 
-        <nav className="nav-links-wrap">
+        <nav className="nav-links-wrap" aria-label="Main Navigation">
           <a
             href="/"
             className={`nav-anchor ${page === 'home' ? 'active' : ''}`}
@@ -70,12 +77,9 @@ function Header({ page, navigate }) {
 function HomePage() {
   return (
     <section className="hero-stage section-container">
-      <div className="hero-full-bg-layer" aria-hidden="true" />
-      <div className="hero-overlay-fade" aria-hidden="true" />
-
       <div className="hero-content-wrapper">
         <div className="idea-bulb-glow-container">
-          <span className="bulb-emoji">💡</span>
+          <span className="bulb-emoji" role="img" aria-label="Idea">💡</span>
           <span className="bulb-tagline-text">SATURANGLE PRESENTS</span>
         </div>
 
@@ -133,30 +137,26 @@ function VisionPage() {
   );
 }
 
-function ExperiencePage({ navigate }) {
+function ExperiencePage() {
   return (
-    <>
-      <section className="section-container page-min-height">
-        <span className="section-tagline">The Format</span>
-        <h2 className="section-title">The Parley Experience</h2>
-        <div className="exp-grid">
-          <div className="exp-block">
-            <h4>Moderated Circles</h4>
-            <p>Structured round-table moderation designed to give equal weight to every voice while preserving conversational flow.</p>
-          </div>
-          <div className="exp-block">
-            <h4>Cross-Domain Inquiry</h4>
-            <p>Curated discussion prompts targeting key technological, social, and economic paradigms.</p>
-          </div>
-          <div className="exp-block">
-            <h4>Synthesis & Output</h4>
-            <p>Transforming conversational insights into concrete takeaways and lasting intellectual community.</p>
-          </div>
+    <section className="section-container page-min-height">
+      <span className="section-tagline">The Format</span>
+      <h2 className="section-title">The Parley Experience</h2>
+      <div className="exp-grid">
+        <div className="exp-block">
+          <h4>Moderated Circles</h4>
+          <p>Structured round-table moderation designed to give equal weight to every voice while preserving conversational flow.</p>
         </div>
-      </section>
-
-      <Footer navigate={navigate} />
-    </>
+        <div className="exp-block">
+          <h4>Cross-Domain Inquiry</h4>
+          <p>Curated discussion prompts targeting key technological, social, and economic paradigms.</p>
+        </div>
+        <div className="exp-block">
+          <h4>Synthesis & Output</h4>
+          <p>Transforming conversational insights into concrete takeaways and lasting intellectual community.</p>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -273,8 +273,10 @@ export default function App() {
       <main className="main-content-layout">
         {page === 'home' && <HomePage />}
         {page === 'vision' && <VisionPage />}
-        {page === 'experience' && <ExperiencePage navigate={navigate} />}
+        {page === 'experience' && <ExperiencePage />}
       </main>
+
+      <Footer navigate={navigate} />
     </div>
   );
 }
