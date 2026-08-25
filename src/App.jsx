@@ -74,7 +74,7 @@ function Header({ page, navigate }) {
   );
 }
 
-function HomePage() {
+function HomePage({ navigate }) {
   return (
     <section className="hero-stage section-container">
       <div className="hero-content-wrapper">
@@ -87,6 +87,16 @@ function HomePage() {
         <p className="hero-description">
           The flagship intellectual round-table discourse where perspectives converge, ideas are refined, and meaningful dialogues shape the future.
         </p>
+        
+        <div className="hero-action-group">
+          <a href="/experience" onClick={navigate('/experience')} className="cta-primary-btn">
+            Explore Experience <span>→</span>
+          </a>
+          <a href="/vision" onClick={navigate('/vision')} className="cta-ghost-btn">
+            Our Vision
+          </a>
+        </div>
+
         <div className="hero-badge-tag">
           <div className="badge-pulse" />
           <span className="badge-text">Flagship Intellectual Roundtable Dialogue</span>
@@ -271,7 +281,7 @@ export default function App() {
       <Header page={page} navigate={navigate} />
 
       <main className="main-content-layout">
-        {page === 'home' && <HomePage />}
+        {page === 'home' && <HomePage navigate={navigate} />}
         {page === 'vision' && <VisionPage />}
         {page === 'experience' && <ExperiencePage />}
       </main>
